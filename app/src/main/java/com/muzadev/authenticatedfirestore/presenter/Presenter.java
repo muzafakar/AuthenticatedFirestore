@@ -3,11 +3,13 @@ package com.muzadev.authenticatedfirestore.presenter;
 import com.muzadev.authenticatedfirestore.model.Customer;
 import com.muzadev.authenticatedfirestore.model.FirebaseInstance;
 
+import java.util.List;
+
 /**
  * Created by zulfakar on 31/07/18.
  * For educational purposes
  */
-public class Presenter implements Contract.Presenter{
+public class Presenter implements Contract.Presenter {
     private Contract.View view;
     private Contract.Interactor interactor;
 
@@ -27,8 +29,8 @@ public class Presenter implements Contract.Presenter{
     }
 
     @Override
-    public void loginComplete(boolean isSuccess) {
-        view.onLoginFinish(isSuccess);
+    public void onLogin(boolean isSuccess) {
+        view.onLogin(isSuccess);
     }
 
     @Override
@@ -37,7 +39,17 @@ public class Presenter implements Contract.Presenter{
     }
 
     @Override
-    public void addNewCustomerComplete() {
+    public void onAddNewCustomer() {
 
+    }
+
+    @Override
+    public void getCustomers() {
+        interactor.getCustomer();
+    }
+
+    @Override
+    public void onGetCustomer(List<Customer> customers) {
+        view.onGetCustomer(customers);
     }
 }

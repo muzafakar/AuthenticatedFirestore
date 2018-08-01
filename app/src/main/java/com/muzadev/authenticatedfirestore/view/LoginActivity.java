@@ -1,17 +1,20 @@
 package com.muzadev.authenticatedfirestore.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.muzadev.authenticatedfirestore.R;
+import com.muzadev.authenticatedfirestore.model.Customer;
 import com.muzadev.authenticatedfirestore.presenter.Contract;
 import com.muzadev.authenticatedfirestore.presenter.Presenter;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements Contract.View {
     private Contract.Presenter presenter;
@@ -38,16 +41,22 @@ public class LoginActivity extends AppCompatActivity implements Contract.View {
     }
 
     @Override
-    public void onLoginFinish(boolean isSuccess) {
+    public void onLogin(boolean isSuccess) {
         if (isSuccess) {
             Snackbar.make(mParentLayout, "Success", Snackbar.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, CustomerActivity.class));
             finish();
         } else {
             Snackbar.make(mParentLayout, "Failed", Snackbar.LENGTH_SHORT).show();
         }
         progressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void onGetCustomer(List<Customer> customers) {
+
+    }
+
 
     private void initUi() {
         presenter = new Presenter(this);
