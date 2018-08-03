@@ -3,7 +3,6 @@ package com.muzadev.authenticatedfirestore.view.dialogue;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ import java.util.List;
 public class AddCustomerDialogue extends DialogFragment implements View.OnClickListener, Contract.View {
     private EditText etName, etAddress;
     private Contract.Presenter presenter;
-    private View parentView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public class AddCustomerDialogue extends DialogFragment implements View.OnClickL
         View view = inflater.inflate(R.layout.dialogue_new_customer, container, false);
         etName = view.findViewById(R.id.etName);
         etAddress = view.findViewById(R.id.etAddress);
-        parentView = view.findViewById(android.R.id.content);
         view.findViewById(R.id.btnAdd).setOnClickListener(this);
         view.findViewById(R.id.btnCancel).setOnClickListener(this);
 
@@ -55,7 +52,6 @@ public class AddCustomerDialogue extends DialogFragment implements View.OnClickL
                 String address = etAddress.getText().toString();
                 Customer customer = new Customer(name, address, null);
                 presenter.addNewCustomer(customer);
-                Snackbar.make(parentView, name + "added", Snackbar.LENGTH_SHORT).show();
                 getDialog().dismiss();
                 break;
             case R.id.btnCancel:

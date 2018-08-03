@@ -26,4 +26,13 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_dialog_dialer" />
+
 </RelativeLayout>

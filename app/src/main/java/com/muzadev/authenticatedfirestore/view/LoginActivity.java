@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.muzadev.authenticatedfirestore.R;
 import com.muzadev.authenticatedfirestore.model.Customer;
 import com.muzadev.authenticatedfirestore.presenter.Contract;
@@ -22,12 +24,19 @@ public class LoginActivity extends AppCompatActivity implements Contract.View {
     private Button btnLogin;
     private ProgressBar progressBar;
     private View mParentLayout;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(this, CustomerActivity.class));
+            finish();
+        }
         initUi();
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
